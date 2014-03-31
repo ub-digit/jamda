@@ -1,0 +1,15 @@
+
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="btn-group pull-right">
+             <button id="sort-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              {{sortOrderSelected}} <span class="caret"></span>
+            </button>
+            <ul id="sort-order-list" class="dropdown-menu" role="menu">
+            {{#each item in sortBy}}
+              <li {{bind-attr class="item.selected:active"}}><a {{ action "sortOrderChanged" item.id }} href="javascript:void(0)">{{item.sort}}</a></li>
+            {{/each}}
+            </ul>
+          </div> <!-- end btngroup -->
+      </div>
+    </div>

@@ -1,0 +1,10 @@
+
+     <ul class="list-unstyled">
+       {{#each item in facets}}
+          <li>
+            <label>
+                 {{view Ember.Checkbox checkedBinding="item.checked"}} 
+                  {{item.name}} <span class="badge">{{item.count}}</span></label>
+          </li>
+       {{/each}}
+    </ul>

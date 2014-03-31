@@ -1,0 +1,10 @@
+
+     <ul class="list-unstyled">
+     {{#each item in facetsLang}}
+        <li>
+          <label>
+               {{view Ember.Checkbox checkedBinding="item.checked"}} 
+                {{removeSortOrder item.name}} <span class="badge">{{item.count}}</span></label>
+        </li>
+     {{/each}}
+    </ul>

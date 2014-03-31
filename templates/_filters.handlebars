@@ -1,0 +1,48 @@
+
+      <div class="row" id="filter">
+        <div class="col-xs-12">
+          <div class="row">
+          <div id="filter-wrapper" class="clearfix">
+            <div class="col-xs-12">
+              <h2>Avgränsa sökningen</h2>
+            </div>
+            <div class="filter-reset col-xs-12">
+              <a class="btn btn-default" {{action "resetFilters" }} href="javascript:void(0)">Återställ <i class="fa fa-undo"></i></a>
+            </div>
+            <div class="filter-year col-xs-12">
+              <h3>Publikationsår</h3>
+                <div class="row"> 
+                  <div id="slider-wrapper" class="col-xs-12">
+                    <div id="slider"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="filter-lang col-xs-12">
+              <h3>Språk</h3>
+              <form name="publication-type" id="publication-type">
+                  {{view App.FacetsLang}}
+              </form>
+            </div>
+
+            <div class="filter-fulltext col-xs-12">
+              <h3>Fulltext</h3>
+                {{view App.Fulltext}}
+            </div>
+            <div class="filter-type col-xs-12">
+              <h3>Publikationstyp</h3>
+              <form name="publication-type" id="publication-type">
+                  {{view App.Facets}}
+              </form>
+            </div>
+            <div class="filter-subject col-xs-12">
+              <h3>Ämnesord</h3>
+              {{#view App.FilterSubject}}
+                {{#link-to 'subject'}}Visa alla ämnesord i Jämda <i class="fa fa-arrow-circle-right"></i>{{/link-to}}
+              {{/view}}
+            </div>
+          </div><!-- filter-wrapper -->
+   
+          </div>
+        </div>
+  
+      </div>

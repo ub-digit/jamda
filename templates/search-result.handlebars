@@ -1,0 +1,47 @@
+
+    <div class="row">
+      <div class="col-sm-4">
+        {{partial "_filters"}}
+      </div>
+      <div id="result-area" class="col-sm-8">
+        <div class="row">
+          <div id="result-area-wrapper">
+          <div class="col-xs-12">
+            {{partial "_search-result-description"}}
+          </div>
+          <div class="col-xs-12">
+            {{view App.SortResultList}}
+          </div>
+          {{#each model.response.docs itemViewClass="Ember.View"}}
+            {{printIsOddDiv view.contentIndex}}
+              {{getPostURL handle dc_title}}
+              <div class="detail-footer">
+                <div class="keywords">
+                <b><i class="fa fa-key"></i> Ämnesord: </b>
+                {{#each item in dc_subject}}
+                  {{item}}
+                {{/each}}
+                </div>
+                <div class="authors">
+                <b><i class="fa fa-user"></i> Författare: </b>
+                  {{#if dc_contributor_author }}
+                    {{joinAuthors dc_contributor_author }}
+                  {{else}}
+                    {{joinAuthors contributors }}
+                  {{/if}}
+                </div>
+                <div class="date-issued">
+                  <b><i class="fa fa-calendar"></i> Publiceringsdatum: </b>
+                   {{dc_date_issued}} 
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          <div id="loader"><i class="fa fa-spinner"></i></div>
+          </div>
+        </div>
+          {{#if showLoadMoreBtn }}
+            {{view App.LoadMore}}
+          {{/if}}
+      </div>
+    </div>

@@ -1,0 +1,68 @@
+
+    <div id="single-post">
+      <div class="row">
+        <div class="col-xs-12"> 
+        <a href="javascript:void(0)" {{action goBack}} class="btn btn-primary btn-standard"><i class="fa fa-chevron-left"></i> Tillbaka</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+         <h2>{{post.response.docs.0.dc_title}}</h2>
+         <p class="ingress">
+         {{#if post.response.docs.0.dc_description_abstract }}
+            <h3>Abstract</h3>
+            {{post.response.docs.0.dc_description_abstract}}</p>
+          {{/if}}
+        </div>
+      </div> <!-- end row --> 
+
+
+      <div class="detail-footer">
+      <div class="row">      
+        <div class="gup-note col-xs-12">
+          <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">      
+        <div class="collection-type col-xs-12">
+          <b><i class="fa fa-align-justify"></i> Publikationstyp:</b> {{post.response.docs.0.collection_name}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">
+        <div class="keywords col-xs-12">
+          <b><i class="fa fa-key"></i> Ämnesord: </b> 
+             {{#each item in post.response.docs.0.dc_subject}}
+                {{item}}
+              {{/each}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">
+        <div class="authors col-xs-12">
+         <b><i class="fa fa-user"></i> Författare: </b> 
+          {{#if post.response.docs.0.dc_contributor_author }}
+            {{joinAuthors post.response.docs.0.dc_contributor_author }}
+          {{else}}
+            {{joinAuthors post.response.docs.0.contributors }}
+          {{/if}}
+        </div>
+        <div class="date-issued col-xs-12">
+            <b><i class="fa fa-calendar"></i> Publiceringsdatum: </b>
+             {{post.response.docs.0.dc_date_issued}} 
+        </div>
+        <div class="number-of-pages col-xs-12">
+            <b><i class="fa fa-files-o"></i> Antal sidor: </b>
+             {{post.response.docs.0.dc_format_extent}} 
+        </div>
+        <div class="isbn col-xs-12">
+            <b><i class="fa fa-info-circle"></i> ISBN: </b>
+             {{joinISBN post.response.docs.0.dc_identifier_isbn}} 
+        </div>
+        <div class="download col-xs-12">
+          <div class="row">
+              {{#each postLinks.response.docs }}
+                <div class="col-xs-6 col-sm-3"><a class="btn btn-lg btn-primary btn-standard" target="_blank" href="http://{{unbound this.file_link}}"><i class="fa fa-cloud-download"></i> Ladda ner fulltext</a></div> 
+            {{/each}}
+          </div> <!-- end row --> 
+        </div> <!-- end download --> 
+      </div><!-- end row -->
+    </div> <!-- end single-post -->

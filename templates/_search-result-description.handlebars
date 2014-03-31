@@ -1,0 +1,14 @@
+
+<div id="search-result-description">
+
+  <p class="lead">
+  {{#if queryToDisplay}}
+  Du sökte efter <b>{{queryToDisplay}}</b>.
+  {{/if}}
+  Jämda visar <b>{{model.response.numFound}}</b> poster publicerade mellan <b>{{startYear}} - {{endYear}}</b>. 
+    {{#if fulltext}}
+      Visar enbart poster som finns som <b>fulltext</b>.
+    {{/if}}
+
+   </p>
+ </div>

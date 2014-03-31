@@ -1,0 +1,283 @@
+  <script type="text/x-handlebars">
+    <div id="wrapper" class="container wrapper">
+      {{outlet}}
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" id="post">
+    <div id="single-post">
+      <div class="row">
+        <div class="col-xs-12"> 
+        <a href="javascript:void(0)" {{action goBack}} class="btn btn-primary btn-standard"><i class="fa fa-chevron-left"></i> Tillbaka</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+         <h2>{{post.response.docs.0.dc_title}}</h2>
+         <p class="ingress">
+         {{#if post.response.docs.0.dc_description_abstract }}
+            <h3>Abstract</h3>
+            {{post.response.docs.0.dc_description_abstract}}</p>
+          {{/if}}
+        </div>
+      </div> <!-- end row --> 
+
+
+      <div class="detail-footer">
+      <div class="row">      
+        <div class="gup-note col-xs-12">
+          <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">      
+        <div class="collection-type col-xs-12">
+          <b><i class="fa fa-align-justify"></i> Publikationstyp:</b> {{post.response.docs.0.collection_name}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">
+        <div class="keywords col-xs-12">
+          <b><i class="fa fa-key"></i> Ämnesord: </b> 
+             {{#each item in post.response.docs.0.dc_subject}}
+                {{item}}
+              {{/each}}
+        </div>
+      </div><!-- end row -->
+      <div class="row">
+        <div class="authors col-xs-12">
+         <b><i class="fa fa-user"></i> Författare: </b> 
+          {{#if post.response.docs.0.dc_contributor_author }}
+            {{joinAuthors post.response.docs.0.dc_contributor_author }}
+          {{else}}
+            {{joinAuthors post.response.docs.0.contributors }}
+          {{/if}}
+        </div>
+        <div class="date-issued col-xs-12">
+            <b><i class="fa fa-calendar"></i> Publiceringsdatum: </b>
+             {{post.response.docs.0.dc_date_issued}} 
+        </div>
+        <div class="number-of-pages col-xs-12">
+            <b><i class="fa fa-files-o"></i> Antal sidor: </b>
+             {{post.response.docs.0.dc_format_extent}} 
+        </div>
+        <div class="isbn col-xs-12">
+            <b><i class="fa fa-info-circle"></i> ISBN: </b>
+             {{joinISBN post.response.docs.0.dc_identifier_isbn}} 
+        </div>
+        <div class="download col-xs-12">
+          <div class="row">
+              {{#each postLinks.response.docs }}
+                <div class="col-xs-6 col-sm-3"><a class="btn btn-lg btn-primary btn-standard" target="_blank" href="http://{{unbound this.file_link}}"><i class="fa fa-cloud-download"></i> Ladda ner fulltext</a></div> 
+            {{/each}}
+          </div> <!-- end row --> 
+        </div> <!-- end download --> 
+      </div><!-- end row -->
+    </div> <!-- end single-post -->
+  </script>
+
+  <script type="text/x-handlebars" id="search">
+    <div class="row">
+      <div class="col-xs-12">
+        <form id="search-form">
+          <div class="input-group">
+            {{input id="search-input" type="search" placeholder="Sök i databasen Jämda" autofocus="true" class="form-control" value=query}}
+            <div class="input-group-btn">
+            <button type="submit" {{action 'trigger_search'}} class="btn btn-default"><i class="fa fa-search"></i> Sök</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    {{view App.SearchResultList}}
+  </script>
+
+
+  <script type="text/x-handlebars" id="subject" data-template-name="subject">
+    <div id="subject-list" class="row">
+        <div class="col-xs-12"> 
+        <a href="javascript:void(0)" {{action goBack}} class="btn btn-primary btn-standard"><i class="fa fa-chevron-left"></i> Tillbaka</a>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+      <h1>Ämnesord i Jämda</h1>
+       <table class="table table-striped table-hover">
+        <tr><th>Ämnesord</th><th>Antal</th><tr>
+          {{#each item in subjectArr}}
+            <tr><td>{{#link-to 'search' query=item.subject startyear=App.MINYEAR endyear=App.MAXYEAR numberofitems=App.MAXCOUNT rows='10'}}{{item.subject}}{{/link-to}}</td> <td><span class="badge">{{item.count}}</span></td></tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_filters">
+      <div class="row" id="filter">
+        <div class="col-xs-12">
+          <div class="row">
+          <div id="filter-wrapper" class="clearfix">
+            <div class="col-xs-12">
+              <h2>Avgränsa sökningen</h2>
+            </div>
+            <div class="filter-reset col-xs-12">
+              <a class="btn btn-default" {{action "resetFilters" }} href="javascript:void(0)">Återställ <i class="fa fa-undo"></i></a>
+            </div>
+            <div class="filter-year col-xs-12">
+              <h3>Publikationsår</h3>
+                <div class="row"> 
+                  <div id="slider-wrapper" class="col-xs-12">
+                    <div id="slider"></div>
+                  </div>
+                </div>
+            </div>
+            <div class="filter-lang col-xs-12">
+              <h3>Språk</h3>
+              <form name="publication-type" id="publication-type">
+                  {{view App.FacetsLang}}
+              </form>
+            </div>
+
+            <div class="filter-fulltext col-xs-12">
+              <h3>Fulltext</h3>
+                {{view App.Fulltext}}
+            </div>
+            <div class="filter-type col-xs-12">
+              <h3>Publikationstyp</h3>
+              <form name="publication-type" id="publication-type">
+                  {{view App.Facets}}
+              </form>
+            </div>
+            <div class="filter-subject col-xs-12">
+              <h3>Ämnesord</h3>
+              {{#view App.FilterSubject}}
+                {{#link-to 'subject'}}Visa alla ämnesord i Jämda <i class="fa fa-arrow-circle-right"></i>{{/link-to}}
+              {{/view}}
+            </div>
+          </div><!-- filter-wrapper -->
+   
+          </div>
+        </div>
+  
+      </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="fulltext-view">
+      <label>
+          {{view Ember.Checkbox checkedBinding="fulltext"}} 
+        Visa enbart poster med fulltext</label>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="facet-view">
+     <ul class="list-unstyled">
+       {{#each item in facets}}
+          <li>
+            <label>
+                 {{view Ember.Checkbox checkedBinding="item.checked"}} 
+                  {{item.name}} <span class="badge">{{item.count}}</span></label>
+          </li>
+       {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="facetLang-view">
+     <ul class="list-unstyled">
+     {{#each item in facetsLang}}
+        <li>
+          <label>
+               {{view Ember.Checkbox checkedBinding="item.checked"}} 
+                {{removeSortOrder item.name}} <span class="badge">{{item.count}}</span></label>
+        </li>
+     {{/each}}
+    </ul>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="_search-result-description">
+    <div id="search-result-description">
+
+      <p class="lead">
+      {{#if queryToDisplay}}
+      Du sökte efter <b>{{queryToDisplay}}</b>.
+      {{/if}}
+      Jämda visar <b>{{model.response.numFound}}</b> poster publicerade mellan <b>{{startYear}} - {{endYear}}</b>. 
+        {{#if fulltext}}
+          Visar enbart poster som finns som <b>fulltext</b>.
+        {{/if}}
+
+       </p>
+     </div>
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="sort-order">
+    <div class="row">
+      <div class="col-xs-12">
+          <div class="btn-group pull-right">
+             <button id="sort-btn" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              {{sortOrderSelected}} <span class="caret"></span>
+            </button>
+            <ul id="sort-order-list" class="dropdown-menu" role="menu">
+            {{#each item in sortBy}}
+              <li {{bind-attr class="item.selected:active"}}><a {{ action "sortOrderChanged" item.id }} href="javascript:void(0)">{{item.sort}}</a></li>
+            {{/each}}
+            </ul>
+          </div> <!-- end btngroup -->
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars" data-template-name="search-result">
+    <div class="row">
+      <div class="col-sm-4">
+        {{partial "_filters"}}
+      </div>
+      <div id="result-area" class="col-sm-8">
+        <div class="row">
+          <div id="result-area-wrapper">
+          <div class="col-xs-12">
+            {{partial "_search-result-description"}}
+          </div>
+          <div class="col-xs-12">
+            {{view App.SortResultList}}
+          </div>
+          {{#each model.response.docs itemViewClass="Ember.View"}}
+            {{printIsOddDiv view.contentIndex}}
+              {{getPostURL handle dc_title}}
+              <div class="detail-footer">
+                <div class="keywords">
+                <b><i class="fa fa-key"></i> Ämnesord: </b>
+                {{#each item in dc_subject}}
+                  {{item}}
+                {{/each}}
+                </div>
+                <div class="authors">
+                <b><i class="fa fa-user"></i> Författare: </b>
+                  {{#if dc_contributor_author }}
+                    {{joinAuthors dc_contributor_author }}
+                  {{else}}
+                    {{joinAuthors contributors }}
+                  {{/if}}
+                </div>
+                <div class="date-issued">
+                  <b><i class="fa fa-calendar"></i> Publiceringsdatum: </b>
+                   {{dc_date_issued}} 
+                </div>
+              </div>
+            </div>
+          {{/each}}
+          <div id="loader"><i class="fa fa-spinner"></i></div>
+          </div>
+        </div>
+          {{#if showLoadMoreBtn }}
+            {{view App.LoadMore}}
+          {{/if}}
+      </div>
+    </div>
+  </script>
+
+
+  <script type="text/x-handlebars" data-template-name="loadMore">
+      <div class="row">
+        <div class="col-xs-12 load-more">
+          <a href="javascript:void(0)" class="btn btn-primary btn-standard">Visa fler <i class="fa fa-refresh"></i></a>
+        </div>
+      </div>
+  </script>
