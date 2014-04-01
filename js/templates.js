@@ -268,6 +268,16 @@ function program17(depth0,data) {
 
 function program19(depth0,data) {
   
+  var buffer = '', stack1;
+  data.buffer.push("\n          <div class=\"isbn col-xs-12\">\n              <b><i class=\"fa fa fa-info-circle\"></i> Ingår i: </b>\n                ");
+  stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.dc_citation_btitle", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" \n          </div>\n        ");
+  return buffer;
+  }
+
+function program21(depth0,data) {
+  
   var buffer = '';
   data.buffer.push("\n                <div class=\"col-xs-6 col-sm-3\"><a class=\"btn btn-lg btn-primary btn-standard\" target=\"_blank\" href=\"http://");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "file_link", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
@@ -312,8 +322,11 @@ function program19(depth0,data) {
   data.buffer.push("\n        ");
   stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_citation_jtitle", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(17, program17, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n        ");
+  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_citation_btitle", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(19, program19, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n\n        <div class=\"download col-xs-12\">\n          <div class=\"row\">\n              ");
-  stack1 = helpers.each.call(depth0, "postLinks.response.docs", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(19, program19, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers.each.call(depth0, "postLinks.response.docs", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n          </div> <!-- end row --> \n        </div> <!-- end download --> \n      </div><!-- end row -->\n    </div> <!-- end single-post -->\n");
   return buffer;

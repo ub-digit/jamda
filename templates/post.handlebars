@@ -80,6 +80,12 @@
                 {{post.response.docs.0.dc_citation_jtitle}} 
           </div>
         {{/if}}
+        {{#if post.response.docs.0.dc_citation_btitle}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa fa-info-circle"></i> Ingår i: </b>
+                {{post.response.docs.0.dc_citation_btitle}} 
+          </div>
+        {{/if}}
 
         <div class="download col-xs-12">
           <div class="row">
