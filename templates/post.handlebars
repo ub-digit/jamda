@@ -19,10 +19,13 @@
 
       <div class="detail-footer">
       <div class="row">      
-        <div class="gup-note col-xs-12">
-          <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
-        </div>
+        {{#if post.response.docs.0.dc_gup_note}}
+          <div class="gup-note col-xs-12">
+            <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
+          </div>
+        {{/if}}
       </div><!-- end row -->
+
       <div class="row">      
         <div class="collection-type col-xs-12">
           <b><i class="fa fa-align-justify"></i> Publikationstyp:</b> {{post.response.docs.0.collection_name}}
@@ -49,14 +52,35 @@
             <b><i class="fa fa-calendar"></i> Publiceringsdatum: </b>
              {{post.response.docs.0.dc_date_issued}} 
         </div>
-        <div class="number-of-pages col-xs-12">
-            <b><i class="fa fa-files-o"></i> Antal sidor: </b>
-             {{post.response.docs.0.dc_format_extent}} 
-        </div>
+        {{#if post.response.docs.0.dc_format_extent}}
+          <div class="number-of-pages col-xs-12">
+              <b><i class="fa fa-files-o"></i> Antal sidor: </b>
+               {{post.response.docs.0.dc_format_extent}} 
+          </div>
+        {{/if}}
         <div class="isbn col-xs-12">
-            <b><i class="fa fa-info-circle"></i> ISBN: </b>
-             {{joinISBN post.response.docs.0.dc_identifier_isbn}} 
+            <b><i class="fa fa-info-circle"></i> ISBN / ISSN: </b>
+              {{joinISBN post.response.docs.0.dc_identifier_isbn post.response.docs.0.dc_citation_issn}} 
         </div>
+        {{#if post.response.docs.0.dc_citation_spage}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa-book"></i> Startsida: </b>
+                {{post.response.docs.0.dc_citation_spage}} 
+          </div>
+        {{/if}}
+        {{#if post.response.docs.0.dc_citation_epage}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa fa-book"></i> Slutsida: </b>
+                {{post.response.docs.0.dc_citation_epage}} 
+          </div>
+        {{/if}}
+        {{#if post.response.docs.0.dc_citation_jtitle}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa fa-info-circle"></i> Ingår i: </b>
+                {{post.response.docs.0.dc_citation_jtitle}} 
+          </div>
+        {{/if}}
+
         <div class="download col-xs-12">
           <div class="row">
               {{#each postLinks.response.docs }}

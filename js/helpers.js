@@ -20,9 +20,13 @@ Ember.Handlebars.registerBoundHelper('getPostURL', function(str, title) {
  	return new Handlebars.SafeString('<a href="#/post/' + str + '"><h2>'+title+'</h2></a>');
 });
 
-Ember.Handlebars.registerBoundHelper('joinISBN', function(arr) {
-	if (arr) {
-		return new Handlebars.SafeString(arr.join(' <strong>|</strong> '));
+Ember.Handlebars.registerBoundHelper('joinISBN', function(isbnArr,issnArr) {
+	if (isbnArr != undefined) {
+		return new Handlebars.SafeString(isbnArr.join(' <strong>|</strong> '));
+	}
+	else if (issnArr != undefined) {
+		return new Handlebars.SafeString(issnArr.join(' <strong>|</strong> '));
+		
 	}
 	else {
 		return "N/A";
