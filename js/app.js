@@ -350,7 +350,11 @@ App.Fulltext = Ember.View.extend({
 });
 
 App.SortResultList = Ember.View.extend({
-	templateName: 'sort-order'
+	templateName: 'sort-order',
+
+	didInsertElement: function() {
+		$('.dropdown-toggle').dropdown();
+	}
 
 });
 

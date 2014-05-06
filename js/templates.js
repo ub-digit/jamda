@@ -396,7 +396,7 @@ function program8(depth0,data) {
 
   data.buffer.push("\n    <div class=\"row\">\n      <div class=\"col-sm-4\">\n        ");
   data.buffer.push(escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "_filters", options) : helperMissing.call(depth0, "partial", "_filters", options))));
-  data.buffer.push("\n      </div>\n      <div id=\"result-area\" class=\"col-sm-8\">\n        <div class=\"row\">\n          <div id=\"result-area-wrapper\">\n          <div class=\"col-xs-12\">\n            ");
+  data.buffer.push("\n      </div>\n      <div id=\"result-area\" class=\"col-sm-8\">\n      <div id=\"result-area-wrapper\">\n        <div class=\"row\">\n          \n          <div class=\"col-xs-12\">\n            ");
   data.buffer.push(escapeExpression((helper = helpers.partial || (depth0 && depth0.partial),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data},helper ? helper.call(depth0, "_search-result-description", options) : helperMissing.call(depth0, "partial", "_search-result-description", options))));
   data.buffer.push("\n          </div>\n          <div class=\"col-xs-12\">\n            ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.SortResultList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
@@ -430,7 +430,7 @@ helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
   },hashTypes:{'id': "STRING",'type': "STRING",'placeholder': "STRING",'autofocus': "STRING",'class': "STRING",'value': "ID"},hashContexts:{'id': depth0,'type': depth0,'placeholder': depth0,'autofocus': depth0,'class': depth0,'value': depth0},contexts:[],types:[],data:data},helper ? helper.call(depth0, options) : helperMissing.call(depth0, "input", options))));
   data.buffer.push("\n            <div class=\"input-group-btn\">\n            <button type=\"submit\" ");
   data.buffer.push(escapeExpression(helpers.action.call(depth0, "trigger_search", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["STRING"],data:data})));
-  data.buffer.push(" class=\"btn btn-default\"><i class=\"fa fa-search\"></i> Sök</button>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n    ");
+  data.buffer.push(" class=\"btn btn-primary\"><i class=\"fa fa-search\"></i> Sök</button>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n    ");
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "App.SearchResultList", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
   data.buffer.push("\n");
   return buffer;
@@ -458,7 +458,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("\n    <div class=\"row\">\n      <div class=\"col-xs-12\">\n          <div class=\"btn-group pull-right\">\n             <button id=\"sort-btn\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">\n              ");
+  data.buffer.push("\n    <div class=\"row\">\n      <div id=\"sort-order-btn-wrapper\" class=\"col-xs-12\">\n          <div class=\"btn-group pull-right\">\n             <button id=\"sort-btn\" type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\">\n              ");
   stack1 = helpers._triageMustache.call(depth0, "sortOrderSelected", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" <span class=\"caret\"></span>\n            </button>\n            <ul id=\"sort-order-list\" class=\"dropdown-menu\" role=\"menu\">\n            ");
