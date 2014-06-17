@@ -172,7 +172,7 @@ App.SearchController = Ember.Controller.extend({
 		}
 		
 		//queryParam = {"query:" this.get("query"), "fulltext:" this.get("fulltext").toString(), "rows:" App.MAXCOUNT.toString(), "startyear:" this.get("startYear").toString(), "endyear:" this.get("endYear").toString(), "english:" + this.get("language.en").toString() +","+ "swedish:"+ this.get("language.sv").toString() , "page:" this.get("page").toString(), "numberofitems:" App.MAXCOUNT.toString(), "facets:" this.getActiveFacetsAndMakeString(), "sortOrder:" this.getPreferedSortOrder().toString()};
-		var queryParam = {query: this.get("query"),fulltext: this.get("fulltext").toString(), rows: App.MAXCOUNT.toString(), startyear: this.get("startYear").toString(), endyear: this.get("endYear").toString(), page: this.get("page").toString(), numberofitems: App.MAXCOUNT.toString(), facets: this.getActiveFacetsAndMakeString(), facetsLang: this.getActiveLanguageFacetsAndMakeString(), sortOrder: this.getPreferedSortOrder().toString()};
+		var queryParam = {query: this.get("query").toString(),fulltext: this.get("fulltext").toString(), rows: App.MAXCOUNT.toString(), startyear: this.get("startYear").toString(), endyear: this.get("endYear").toString(), page: this.get("page").toString(), numberofitems: App.MAXCOUNT.toString(), facets: this.getActiveFacetsAndMakeString(), facetsLang: this.getActiveLanguageFacetsAndMakeString(), sortOrder: this.getPreferedSortOrder().toString()};
 		
 
 		//this.get('target').send('transitionWithoutHistory', queryParam);

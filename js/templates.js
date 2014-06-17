@@ -191,16 +191,6 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', stack1;
-  data.buffer.push("\n          <div class=\"gup-note col-xs-12\">\n            <b><i class=\"fa fa-pencil\"></i> Kommentar:</b> ");
-  stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.dc_gup_note", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n          </div>\n        ");
-  return buffer;
-  }
-
-function program5(depth0,data) {
-  
-  var buffer = '', stack1;
   data.buffer.push("\n                ");
   stack1 = helpers._triageMustache.call(depth0, "item", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
@@ -208,7 +198,7 @@ function program5(depth0,data) {
   return buffer;
   }
 
-function program7(depth0,data) {
+function program5(depth0,data) {
   
   var buffer = '', helper, options;
   data.buffer.push("\n            ");
@@ -217,7 +207,7 @@ function program7(depth0,data) {
   return buffer;
   }
 
-function program9(depth0,data) {
+function program7(depth0,data) {
   
   var buffer = '', helper, options;
   data.buffer.push("\n            ");
@@ -226,12 +216,21 @@ function program9(depth0,data) {
   return buffer;
   }
 
-function program11(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = '', stack1;
   data.buffer.push("\n          <div class=\"number-of-pages col-xs-12\">\n              <b><i class=\"fa fa-files-o\"></i> Antal sidor: </b>\n               ");
   stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.dc_format_extent", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push(" \n          </div>\n        ");
+  return buffer;
+  }
+
+function program11(depth0,data) {
+  
+  var buffer = '', helper, options;
+  data.buffer.push("\n          <div class=\"isbn col-xs-12\">\n              <b><i class=\"fa fa-info-circle\"></i> Utgivare: </b>\n                ");
+  data.buffer.push(escapeExpression((helper = helpers.joinPublishers || (depth0 && depth0.joinPublishers),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data},helper ? helper.call(depth0, "post.response.docs.0.dc_publisher", options) : helperMissing.call(depth0, "joinPublishers", "post.response.docs.0.dc_publisher", options))));
   data.buffer.push(" \n          </div>\n        ");
   return buffer;
   }
@@ -278,6 +277,16 @@ function program19(depth0,data) {
 
 function program21(depth0,data) {
   
+  var buffer = '', stack1;
+  data.buffer.push("\n          <div class=\"gup-note col-xs-12\">\n            <b><i class=\"fa fa-pencil\"></i> Kommentar:</b> ");
+  stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.dc_gup_note", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n          </div>\n        ");
+  return buffer;
+  }
+
+function program23(depth0,data) {
+  
   var buffer = '';
   data.buffer.push("\n                <div class=\"col-xs-6 col-sm-3\"><a class=\"btn btn-lg btn-primary btn-standard\" target=\"_blank\" href=\"http://");
   data.buffer.push(escapeExpression(helpers.unbound.call(depth0, "file_link", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data})));
@@ -293,26 +302,26 @@ function program21(depth0,data) {
   data.buffer.push("</h2>\n         <p class=\"ingress\">\n         ");
   stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_description_abstract", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n        </div>\n      </div> <!-- end row --> \n\n\n      <div class=\"detail-footer\">\n      <div class=\"row\">      \n        ");
-  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_gup_note", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n      </div><!-- end row -->\n\n      <div class=\"row\">      \n        <div class=\"collection-type col-xs-12\">\n          <b><i class=\"fa fa-align-justify\"></i> Publikationstyp:</b> ");
+  data.buffer.push("\n        </div>\n      </div> <!-- end row --> \n\n\n      <div class=\"detail-footer\">\n\n\n      <div class=\"row\">      \n        <div class=\"collection-type col-xs-12\">\n          <b><i class=\"fa fa-align-justify\"></i> Publikationstyp:</b> ");
   stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.collection_name", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n        </div>\n      </div><!-- end row -->\n      <div class=\"row\">\n        <div class=\"keywords col-xs-12\">\n          <b><i class=\"fa fa-key\"></i> Ämnesord: </b> \n             ");
-  stack1 = helpers.each.call(depth0, "item", "in", "post.response.docs.0.dc_subject", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(5, program5, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
+  stack1 = helpers.each.call(depth0, "item", "in", "post.response.docs.0.dc_subject", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(3, program3, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n        </div>\n      </div><!-- end row -->\n      <div class=\"row\">\n        <div class=\"authors col-xs-12\">\n         <b><i class=\"fa fa-user\"></i> Författare: </b> \n          ");
-  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_contributor_author", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_contributor_author", {hash:{},hashTypes:{},hashContexts:{},inverse:self.program(7, program7, data),fn:self.program(5, program5, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n        </div>\n        <div class=\"date-issued col-xs-12\">\n            <b><i class=\"fa fa-calendar\"></i> Publiceringsdatum: </b>\n             ");
   stack1 = helpers._triageMustache.call(depth0, "post.response.docs.0.dc_date_issued", {hash:{},hashTypes:{},hashContexts:{},contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push(" \n        </div>\n        ");
-  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_format_extent", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
+  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_format_extent", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n        <div class=\"isbn col-xs-12\">\n            <b><i class=\"fa fa-info-circle\"></i> ISBN / ISSN: </b>\n              ");
-  data.buffer.push(escapeExpression((helper = helpers.joinISBN || (depth0 && depth0.joinISBN),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["ID","ID"],data:data},helper ? helper.call(depth0, "post.response.docs.0.dc_identifier_isbn", "post.response.docs.0.dc_citation_issn", options) : helperMissing.call(depth0, "joinISBN", "post.response.docs.0.dc_identifier_isbn", "post.response.docs.0.dc_citation_issn", options))));
+  data.buffer.push("\n        ");
+  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_publisher", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n        <div class=\"isbn col-xs-12\">\n            <b><i class=\"fa fa-info-circle\"></i> ISBN / ISSN: </b>\n              ");
+  data.buffer.push(escapeExpression((helper = helpers.joinISBN || (depth0 && depth0.joinISBN),options={hash:{},hashTypes:{},hashContexts:{},contexts:[depth0,depth0],types:["ID","ID"],data:data},helper ? helper.call(depth0, "post.response.docs.0.dc_identifier_isbn", "post.response.docs.0.dc_identifier_issn", options) : helperMissing.call(depth0, "joinISBN", "post.response.docs.0.dc_identifier_isbn", "post.response.docs.0.dc_identifier_issn", options))));
   data.buffer.push(" \n        </div>\n        ");
   stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_citation_spage", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(13, program13, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
@@ -325,8 +334,11 @@ function program21(depth0,data) {
   data.buffer.push("\n        ");
   stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_citation_btitle", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(19, program19, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n        <div class=\"download col-xs-12\">\n          <div class=\"row\">\n              ");
-  stack1 = helpers.each.call(depth0, "postLinks.response.docs", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0],types:["ID"],data:data});
+  data.buffer.push("\n     \n        ");
+  stack1 = helpers['if'].call(depth0, "post.response.docs.0.dc_gup_note", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(21, program21, data),contexts:[depth0],types:["ID"],data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n\n        <div class=\"download col-xs-12\">\n          <div class=\"row\">\n              ");
+  stack1 = helpers.each.call(depth0, "postLinks.response.docs", {hash:{},hashTypes:{},hashContexts:{},inverse:self.noop,fn:self.program(23, program23, data),contexts:[depth0],types:["ID"],data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n          </div> <!-- end row --> \n        </div> <!-- end download --> \n      </div><!-- end row -->\n    </div> <!-- end single-post -->\n");
   return buffer;

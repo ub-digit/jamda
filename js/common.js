@@ -37,7 +37,7 @@ App.buildURL = function (queryParams) {
         var facetLang, lang, query, start, rows, fulltext, facets, sortOrder;   
 
         if (typeof(queryParams.query) === "string" && !(queryParams.query === "")) {
-            query = queryParams.query;
+            query = encodeURIComponent(queryParams.query);
         }
         else {
             query = "*";

@@ -14,6 +14,14 @@ Ember.Handlebars.registerBoundHelper('printIsOddDiv', function(number) {
  	}
 });
 
+Ember.Handlebars.registerBoundHelper('joinPublishers', function(arr) {
+	if (arr) {
+		return new Handlebars.SafeString(arr.join(' <strong>|</strong> '));
+	}
+	else {
+		return ("N/A");
+	}
+});
 
 
 Ember.Handlebars.registerBoundHelper('getPostURL', function(str, title) {  

@@ -18,13 +18,7 @@
 
 
       <div class="detail-footer">
-      <div class="row">      
-        {{#if post.response.docs.0.dc_gup_note}}
-          <div class="gup-note col-xs-12">
-            <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
-          </div>
-        {{/if}}
-      </div><!-- end row -->
+
 
       <div class="row">      
         <div class="collection-type col-xs-12">
@@ -58,9 +52,16 @@
                {{post.response.docs.0.dc_format_extent}} 
           </div>
         {{/if}}
+        {{#if post.response.docs.0.dc_publisher}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa-info-circle"></i> Utgivare: </b>
+                {{joinPublishers post.response.docs.0.dc_publisher}} 
+          </div>
+        {{/if}}
+
         <div class="isbn col-xs-12">
             <b><i class="fa fa-info-circle"></i> ISBN / ISSN: </b>
-              {{joinISBN post.response.docs.0.dc_identifier_isbn post.response.docs.0.dc_citation_issn}} 
+              {{joinISBN post.response.docs.0.dc_identifier_isbn post.response.docs.0.dc_identifier_issn}} 
         </div>
         {{#if post.response.docs.0.dc_citation_spage}}
           <div class="isbn col-xs-12">
@@ -86,6 +87,13 @@
                 {{post.response.docs.0.dc_citation_btitle}} 
           </div>
         {{/if}}
+     
+        {{#if post.response.docs.0.dc_gup_note}}
+          <div class="gup-note col-xs-12">
+            <b><i class="fa fa-pencil"></i> Kommentar:</b> {{post.response.docs.0.dc_gup_note}}
+          </div>
+        {{/if}}
+
 
         <div class="download col-xs-12">
           <div class="row">
