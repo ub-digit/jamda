@@ -58,7 +58,13 @@
                 {{joinPublishers post.response.docs.0.dc_publisher}} 
           </div>
         {{/if}}
-
+        {{#if post.response.docs.0.dc_publisher}}
+          <div class="isbn col-xs-12">
+              <b><i class="fa fa-info-circle"></i> Serie/Rapportnummer: </b>
+                {{joinSeries post.response.docs.0.dc_relation_ispartofseries}} 
+                
+          </div>
+        {{/if}}
         <div class="isbn col-xs-12">
             <b><i class="fa fa-info-circle"></i> ISBN / ISSN: </b>
               {{joinISBN post.response.docs.0.dc_identifier_isbn post.response.docs.0.dc_identifier_issn}} 

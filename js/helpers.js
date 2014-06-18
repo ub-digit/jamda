@@ -23,6 +23,16 @@ Ember.Handlebars.registerBoundHelper('joinPublishers', function(arr) {
 	}
 });
 
+Ember.Handlebars.registerBoundHelper('joinSeries', function(arr) {
+	if (arr) {
+		return new Handlebars.SafeString(arr.join(' <strong>|</strong> '));
+	}
+	else {
+		return ("N/A");
+		
+	}
+});
+
 
 Ember.Handlebars.registerBoundHelper('getPostURL', function(str, title) {  
  	return new Handlebars.SafeString('<a href="#/post/' + str + '"><h2>'+title+'</h2></a>');
