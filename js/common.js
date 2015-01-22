@@ -130,5 +130,5 @@ App.buildURL = function (queryParams) {
             sortOrder = "&sort=dc_date_accessioned+desc";
         }
 
-        return  App.APIURL + "select?q=simple:*"+query+"*&start="+start+"&rows="+rows+"&wt=json&indent=true&fq=dc_date_issued:["+queryParams.startyear+"%20TO%20"+queryParams.endyear+"]"+fulltext+"&facet=true&facet.field={!ex=dx}language_order&facet.field={!ex=dt}collection_id_name_mapping&facet.sort=index" + facetsLang + facets + sortOrder + "&json.wrf=?"
+        return  App.APIURL + "select?q=simple:"+query+"&start="+start+"&rows="+rows+"&wt=json&indent=true&fq=dc_date_issued:["+queryParams.startyear+"%20TO%20"+queryParams.endyear+"]"+fulltext+"&facet=true&facet.field={!ex=dx}language_order&facet.field={!ex=dt}collection_id_name_mapping&facet.sort=index" + facetsLang + facets + sortOrder + "&json.wrf=?"
     }
